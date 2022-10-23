@@ -1,4 +1,4 @@
-seon challenge submission
+Seon Challenge Submission
 
 Invisible Protection
 Our main idea was to ask for the help of people in order to collect extra data, so we could construct a widely usable database to connect IPs and locations. This way we can validate user activities and mark VPN servers.
