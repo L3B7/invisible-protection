@@ -9,11 +9,11 @@ After your data arrives at the webserver it gets stored in a relational database
 
 To reach this goal we used the followings:
 
-REST API for communication between the mobile app and the webserver
-PostgreSQL for the database
-Heroku for the webserver
-SpringBoot framework for the webserver backend
-OpenStreetMap API for data visualization
-The link to our webserver
+ - REST API for communication between the mobile app and the webserver
+ - PostgreSQL for the database
+ - Heroku for the webserver
+ - SpringBoot framework for the webserver backend
+ - OpenStreetMap API for data visualization
+ - The link to our webserver
 
 Our future plans include generating IDs for the rewards so people can share their coupons with others (for example, influencers). We would also like to have a community feature where you would receive more/better offers if you join one.
