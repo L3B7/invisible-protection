@@ -1,0 +1,48 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="Data sharing">
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/timing_entries"
+            app:entryValues="@array/timing_values"
+            app:key="timing"
+            app:title="IP + Location send interval"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            app:key="privacy_no_loc_if_vpn"
+            app:title="Don't send location data if VPN is active"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Your contribution">
+        <Preference
+            app:defaultValue="0"
+            app:key="totalsent"
+            app:title="Total IPLoc sent:"
+            app:useSimpleSummaryProvider="true" />
+        <Preference
+            app:key="lastsent"
+            app:title="Last time:"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+<!--    <PreferenceCategory app:title="Server config">-->
+<!--        <EditTextPreference-->
+<!--            app:key="serverurl"-->
+<!--            app:title="Server address"-->
+<!--            app:useSimpleSummaryProvider="true"/>-->
+<!--    </PreferenceCategory>-->
+
+    <PreferenceCategory app:title="Permissions">
+        <Preference
+            app:title="Check location preferences"
+            app:key="locpref"/>
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Configuration">
+        <EditTextPreference
+            android:title="Server address override"
+            app:key="overrideaddress"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

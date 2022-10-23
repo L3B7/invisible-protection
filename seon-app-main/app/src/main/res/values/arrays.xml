@@ -1,0 +1,34 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+
+    <string-array name="timing_entries">
+        <item>Off</item>
+        <item>15m</item>
+        <item>30m</item>
+        <item>1h</item>
+        <item>2h</item>
+        <item>4h</item>
+        <item>6h</item>
+        <item>12h</item>
+    </string-array>
+
+    <string-array name="timing_values">
+        <item>0</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>240</item>
+        <item>360</item>
+        <item>720</item>
+    </string-array>
+</resources>
