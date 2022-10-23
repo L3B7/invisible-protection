@@ -1,0 +1,60 @@
+html, body{
+    height: 100%;
+    background-color: #96D1CD;
+    font-family: 'Roboto';font-size: 14px;
+}
+
+#tab1 {
+    width: 100%;
+}
+
+#maintable thead tr{
+    line-height: 10px;
+}
+
+#scroller{
+    horiz-align: center;
+    height: 90vh;
+    overflow-x: auto;
+}
+#map{
+    width: 50vw;
+    height: 90vh;
+}
+#ips{
+    vertical-align: top;
+    background-color: #96D1CD;
+    width:100% ;
+}
+#maintable thead{
+    display: block;
+}
+
+#maintable {
+    table-layout: auto;
+    width: 100%;
+}
+#maintable tbody{
+    overflow-x: hidden;
+    background-color: #96D1CD;
+    vertical-align: top;
+}
+
+#ipdata{
+    width:100%;
+}
+
+.map {
+    display: inline;
+    float:right;
+    width: 50vw;
+    height: 90vh;
+    margin: 0px;
+}
+
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

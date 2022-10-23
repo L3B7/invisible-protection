@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <title>Invisible Protection</title>
+    <link rel = "stylesheet" href = "style.css" />
+    <link rel = "stylesheet" href = "leaflet.css" />
+</head>
+<body>
+
+<!--The div element for the map -->
+<div id="outer" style="height: 50vh">
+    <h1>IPMapper &nbsp;&nbsp;&nbsp;&nbsp;<a href="demoapp.apk">Download DEMO app (Android)</a></h1>
+<table id="maintable">
+    <tbody>
+    <tr>
+        <td>
+            <div id="tab1"><table id="ips"></table></div>
+        </td>
+        <td><div id="map"></div></td>
+        <td>
+            <div id="scroller"><table id="ipdata"></table></div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="leaflet.js"></script>
+<script src="scripts.js"></script>
+<script>
+    let data = [];
+    let ips = [];
+    let mapOptions = {
+        center:[0,0],
+        zoom:1,
+        preferCanvas:true
+    }
+    map = new L.map('map',mapOptions,);
+    function updateData(resp){
+        //console.log(resp)
+        data = JSON.parse(resp)["content"];
+        console.log(data);
+        for(let i = 0; i < data.length; i++){
+            let ob = data[i];
+            let loc = new Location_Vis([ob["latitude"], ob["longitude"]], ob["accuracy"]);
+            let ivddata = {
+                lat: ob["latitude"],
+                lon: ob["longitude"],
+                accu : ob["accuracy"],
+                vpn : ob["isvpn"],
+                wifi : ob["iswifi"],
+                cellular: ob["iscellular"]
+            }
+            if (!matches(ob["ipaddress"], ips)){
+                ips.push({
+                    ip: ob["ipaddress"],
+                    datapoints : [loc],
+                    ivdat : [ivddata],
+                    vpncount : ob["isvpn"]?1:0,
+                    wificount : ob["iswifi"]?1:0,
+                    cellcount : ob["iscellular"]?1:0
+                });
+            }else{
+                let k = find(ob["ipaddress"], ips);
+                k.datapoints.push(loc);
+                k.ivdat.push(ivddata);
+                if(ob["isvpn"]) {
+                    k.vpncount += 1;
+                }
+                if(ob["iswifi"]) {
+                    k.wificount += 1;
+                }
+                if(ob["iscellular"]){
+                    k.cellcount += 1;
+                }
+            }
+        }
+        ips.sort();
+        fillUpTable(ips, '#ips', 'clickHandler')
+        clickHandler(ips[0].ip);
+    }
+
+    function clickHandler(ip){
+        let k = find(ip, ips);
+
+        let array_temp = []
+        let array_filtered2 = []
+        for(let i = 0; i < k.datapoints.length; i++){
+            if (k.ivdat[i].lat !== 0 && k.ivdat[i].lon !== 0){
+                array_temp.push(k.datapoints[i]);
+                array_filtered2.push(k.ivdat[i]);
+            }
+        }
+        oncheck(array_temp);
+        fillUpTable2(array_filtered2, "#ipdata");
+
+    }
+    function update(){
+        httpGetAsync("../data", updateData);
+    }
+
+
+
+
+    update();
+</script>
+</body>
+</html>
